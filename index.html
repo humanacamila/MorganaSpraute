@@ -323,7 +323,7 @@ body.free #hear,body.free #ouvir,body.free #along,body.free .ctl .bpm,body.free 
 
 <section id="home">
   <div class="hh">
-    <div class="fw"><button class="face" id="face" aria-label="Foto da Morgana"><img src="fotos/2.webp" alt="Morgana" onerror="this.parentNode.textContent='😀'"></button><div class="cap">Toque na Morgana!</div></div>
+    <div class="fw"><button class="face" id="face" aria-label="Foto da Morgana"><img src="2.webp" alt="Morgana" onerror="this.parentNode.textContent='😀'"></button><div class="cap">Toque na Morgana!</div></div>
     <div class="rc"><div class="logo-w"><img class="logo-img" src="logo.webp" width="900" height="422" alt="Morgana Spraute"></div><button class="play" data-to="menu">▶ Jogar</button></div>
   </div>
 </section>
@@ -447,17 +447,17 @@ function oops(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)(
 const harp=(a,gap=70,d=.3,v=.15)=>a.forEach((f,i)=>setTimeout(()=>tone(f,d,'sine',v),i*gap));
 const fr=m=>440*Math.pow(2,(m-69)/12);
 
-/* foto da Morgana: fotos/1.jpg ... e sons/1.mp3 ... (se faltar, usa emoji e um som simples) */
-[1,2,3,4].forEach(n=>{const i=new Image();i.decoding='async';i.src='fotos/'+n+'.webp'});
-const NF=4,EM=['😀','😮','😜','🥰'],FQ=[392,440,523,587];let fi=1,sc=0,fa=null;const NS=3,SA=[1,2,3].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});
+/* arquivos na mesma pasta do index.html: 1.webp..4.webp (fotos) e 1.mp3.. (sons) */
+[1,2,3,4].forEach(n=>{const i=new Image();i.decoding='async';i.src=''+n+'.webp'});
+const NF=4,EM=['😀','😮','😜','🥰'],FQ=[392,440,523,587];let fi=1,sc=0,fa=null;const NS=3,SA=[1,2,3].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});
 $('face').onclick=()=>{fi=(fi+1)%NF;const f=$('face');
-  const im=new Image();im.alt='Morgana';im.onload=()=>{f.textContent='';f.appendChild(im)};im.onerror=()=>{f.textContent=EM[fi]};im.src='fotos/'+(fi+1)+'.webp';
+  const im=new Image();im.alt='Morgana';im.onload=()=>{f.textContent='';f.appendChild(im)};im.onerror=()=>{f.textContent=EM[fi]};im.src=''+(fi+1)+'.webp';
   f.classList.remove('pop');void f.offsetWidth;f.classList.add('pop');
   const k=(sc++%NS)+1;try{if(fa){fa.pause()}}catch(e){}fa=SA[k-1];try{fa.currentTime=0}catch(e){}fa.play().catch(()=>tone(FQ[fi],.4))};
 
 
 /* sons dos botoes */
-const PJ=new Audio('sons/jogar.mp3');PJ.preload='auto';
+const PJ=new Audio('jogar.mp3');PJ.preload='auto';
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.id==='face'||b.id==='drum'||b.id==='bdrum'||b.hidden)return;
   try{if(typeof micOn!=='undefined'&&micOn&&b.id!=='tutor')return}catch(_){}
   if(b.classList.contains('play')){try{PJ.currentTime=0;PJ.play().catch(()=>{})}catch(_){}return}
@@ -482,14 +482,14 @@ const g3beat=()=>60000/g3bpm,g3at=(f,ms)=>{g3to.push(setTimeout(f,ms))},g3clr=()
 const FEM=/luciana|francisca|maria|vit[oó]ria|fernanda|camila|google portugu[eê]s|female|feminin/i,MAS=/felipe|daniel|ricardo|jo[aã]o|male\b|masculin/i;
 function g3pick(){const l=(speechSynthesis.getVoices()||[]).filter(v=>/pt[-_]BR/i.test(v.lang));return l.find(v=>FEM.test(v.name)&&!MAS.test(v.name))||l.find(v=>!MAS.test(v.name))||l[0]}
 try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices()}catch(e){}
-const DV=['ouve','ouca','macaquinho'].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});let g3di=0,g3da=null;
+const DV=['ouve','ouca','macaquinho'].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});let g3di=0,g3da=null;
 function g3dem(){if(!g3nar)return;try{speechSynthesis.cancel()}catch(e){}if(g3da){g3da.pause()}const a=DV[g3di++%DV.length];g3da=a;a.currentTime=0;a.play().catch(()=>g3voz('Ouça o ritmo!'))}
-const VZ=['vez','imitar'].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});let g3vi=0;
+const VZ=['vez','imitar'].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});let g3vi=0;
 function g3vz(){if(!g3nar)return;try{speechSynthesis.cancel()}catch(e){}if(g3da)g3da.pause();const a=VZ[g3vi++%VZ.length];g3da=a;a.currentTime=0;a.play().catch(()=>g3voz('Sua vez de tocar!'))}
-const ST=[5,10,15,20],SN=['desafio','nivel','concentrar'].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});let g3si=0;
-let g3nar=true;try{g3nar=localStorage.getItem('spraute_nar')!=='0'}catch(e){}let g3wi=0;const WN=['isso','boa','muito'].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});
+const ST=[5,10,15,20],SN=['desafio','nivel','concentrar'].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});let g3si=0;
+let g3nar=true;try{g3nar=localStorage.getItem('spraute_nar')!=='0'}catch(e){}let g3wi=0;const WN=['isso','boa','muito'].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});
 function g3win(st){if(!g3nar)return;try{speechSynthesis.cancel()}catch(e){}if(g3da)g3da.pause();g3da=WN[g3wi++%WN.length];g3da.currentTime=0;g3da.play().catch(()=>{});if(st)g3at(()=>{g3da=SN[g3si++%SN.length];g3da.currentTime=0;g3da.play().catch(()=>{})},1250)}
-const LS=['nao','tentar'].map(n=>{const a=new Audio('sons/'+n+'.mp3');a.preload='auto';return a});
+const LS=['nao','tentar'].map(n=>{const a=new Audio(''+n+'.mp3');a.preload='auto';return a});
 function g3lose(){if(!g3nar)return;try{speechSynthesis.cancel()}catch(e){}if(g3da)g3da.pause();g3da=LS[0];g3da.currentTime=0;g3da.play().catch(()=>{});g3at(()=>{g3da=LS[1];g3da.currentTime=0;g3da.play().catch(()=>{})},2900)}
 function g3voz(t){if(!g3nar)return;try{const y=window.speechSynthesis;if(!y)return;y.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';u.rate=1.08;u.pitch=2;u.volume=1;const v=g3pick();if(v)u.voice=v;y.speak(u)}catch(e){}}
 const g3say=t=>{$('g3s').textContent=t};
