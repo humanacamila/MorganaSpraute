@@ -1,0 +1,7 @@
+COMO ATUALIZAR NO GITHUB
+1) Descompacte este zip no computador (o GitHub NAO abre zip).
+2) No repositorio, clique em Add file > Upload files.
+3) Arraste TODOS os arquivos e pastas (index.html, sw.js, manifest.webmanifest, icones, logo.webp, .nojekyll, pasta fotos, pasta sons).
+   index.html precisa ficar na RAIZ do repositorio.
+4) Clique em Commit changes. Aguarde 1-2 min (aba Actions com check verde).
+5) Abra o site com ?v=219 no final para ignorar o cache.
